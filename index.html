@@ -4,439 +4,265 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Elyas Dinart — Communication</title>
-<meta name="description" content="Elyas Dinart, étudiant en communication à Bruxelles. Communication interne, rédaction, événements, campagnes.">
+<meta name="description" content="Elyas Dinart, étudiant en communication à l'ISFSC (Bruxelles). Stage à la Commission européenne, DG DIGIT. Projets, parcours et contact.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#f4f1ea; --ink:#141414; --muted:#8a857c; --soft:#e7e2d7;
-    --c1:#ff5a36; --c2:#2f4cff; --c3:#c6f24e; --c4:#ffb8d2; --c5:#ffd23f;
-  }
-  body[data-theme="nuit"]{ --bg:#111111; --ink:#f4f1ea; --muted:#7c786f; --soft:#222; }
-  body[data-theme="menthe"]{ --bg:#dff3e4; --ink:#0f2a1c; --muted:#5b7a68; --soft:#c8e8d1; }
-  body[data-theme="brique"]{ --bg:#ff5a36; --ink:#1a0d08; --muted:#5a2414; --soft:#ff7b5c; --c1:#ffd23f; }
-
+  :root{ --bg:#f4f1ea; --ink:#141414; --muted:#6f6a61; --line:#d9d3c6; --soft:#ebe6db; --accent:#ff5a36; }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--ink);font-family:"Instrument Sans",system-ui,sans-serif;
-       transition:background .6s ease,color .6s ease;overflow-x:hidden;cursor:none}
+  body{background:var(--bg);color:var(--ink);font:400 17px/1.6 "Instrument Sans",system-ui,sans-serif}
   a{color:inherit}
-  .display{font-family:"Anton",Impact,sans-serif;text-transform:uppercase;letter-spacing:-.01em;line-height:.9}
-  .serif{font-family:"Instrument Serif",serif;font-style:italic;text-transform:none;font-weight:400}
+  img{max-width:100%;display:block}
+  .display{font-family:"Anton",Impact,sans-serif;text-transform:uppercase;letter-spacing:-.005em;line-height:.95;font-weight:400}
+  .serif{font-family:"Instrument Serif",serif;font-style:italic}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  .label{font:600 12px "Instrument Sans";letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
 
-  /* curseur */
-  .cursor{position:fixed;top:0;left:0;width:14px;height:14px;border-radius:50%;background:var(--ink);
-          pointer-events:none;z-index:999;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s;mix-blend-mode:difference}
-  body .cursor{background:#fff}
-  .cursor.big{width:70px;height:70px}
-  .cursor-label{position:fixed;pointer-events:none;z-index:1000;font:600 11px "Instrument Sans";letter-spacing:.12em;
-          text-transform:uppercase;color:#000;transform:translate(-50%,-50%);opacity:0;transition:opacity .2s}
-  .cursor-label.on{opacity:1}
-  @media (hover:none){body{cursor:auto}.cursor,.cursor-label{display:none}}
+  /* navigation */
+  nav{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:60px}
+  nav .me{font-family:"Anton";font-size:20px;white-space:nowrap;text-transform:uppercase;text-decoration:none}
+  nav ul{list-style:none;display:flex;gap:26px}
+  nav ul a{text-decoration:none;font-size:15px;font-weight:500}
+  nav ul a:hover{text-decoration:underline;text-underline-offset:4px}
 
-  /* grain */
-  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;opacity:.07;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  /* accueil */
+  .intro{padding:80px 0 70px}
+  .intro .wrap{display:grid;grid-template-columns:1.5fr 1fr;gap:60px;align-items:end}
+  .intro h1{font-size:clamp(64px,10vw,132px);margin-top:16px}
+  .intro .lead{font-size:clamp(20px,2.2vw,25px);line-height:1.45;margin-top:28px;max-width:600px}
+  .intro .lead .serif{font-size:1.08em}
+  .intro .links{margin-top:30px;display:flex;gap:22px;flex-wrap:wrap;font-weight:500}
+  .intro .links a{text-underline-offset:4px}
+  /* emplacement photo : remplacer le bloc .photo-vide par <img src="img/photo.jpg" alt="Elyas Dinart"> */
+  .photo{aspect-ratio:4/5;border-radius:6px;overflow:hidden;background:var(--soft);border:1px solid var(--line)}
+  .photo img{width:100%;height:100%;object-fit:cover}
+  .photo-vide{width:100%;height:100%;display:grid;place-items:center;font-family:"Anton";font-size:72px;color:var(--line)}
 
-  /* boutons flottants */
-  .fab{position:fixed;width:52px;height:52px;border-radius:50%;background:var(--ink);color:var(--bg);
-       display:grid;place-items:center;z-index:50;border:none;cursor:none;box-shadow:0 10px 30px rgba(0,0,0,.15);
-       transition:transform .3s cubic-bezier(.3,1.6,.5,1),background .6s,color .6s}
-  .fab:hover{transform:scale(1.12) rotate(-8deg)}
-  .fab-theme{right:24px;bottom:24px}
-  .fab-top{right:24px;top:24px;font:700 15px "Anton";letter-spacing:.02em}
-  .theme-name{position:fixed;right:88px;bottom:38px;font:600 11px "Instrument Sans";letter-spacing:.14em;
-       text-transform:uppercase;z-index:50;opacity:0;transform:translateX(10px);transition:.4s}
-  .theme-name.show{opacity:1;transform:none}
+  /* projets */
+  section{padding:80px 0;border-top:1px solid var(--line)}
+  h2.display{font-size:clamp(44px,6vw,72px)}
+  .section-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap}
+  .section-head p{color:var(--muted);max-width:420px}
+  .case{display:grid;grid-template-columns:1fr 1.15fr;gap:44px;padding:48px 0;border-bottom:1px solid var(--line);align-items:start}
+  .case:last-child{border-bottom:none}
+  .case .num{font-family:"Anton";font-size:18px;color:var(--accent)}
+  .case h3{font-family:"Anton";font-weight:400;text-transform:uppercase;font-size:clamp(32px,3.6vw,46px);line-height:1;margin:8px 0 6px}
+  .case .ctx{color:var(--muted);font-size:15px}
+  .case .body p{margin-top:16px}
+  .case .body b{font-weight:600}
+  .case .open{margin-top:22px;background:none;border:none;font:600 15px "Instrument Sans";color:var(--ink);
+              text-decoration:underline;text-underline-offset:5px;cursor:pointer;padding:0}
+  .case .open:hover{color:var(--accent)}
+  .case figure img{border-radius:6px;border:1px solid var(--line);cursor:pointer}
+  .case figcaption{font-size:13px;color:var(--muted);margin-top:8px}
+  .school{font-size:13px;color:var(--muted);margin-top:14px;font-style:italic}
 
-  /* hero */
-  .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
-        text-align:center;padding:90px 20px 60px;position:relative}
-  .meta{font:600 12px "Instrument Sans";letter-spacing:.18em;text-transform:uppercase}
-  .meta small{display:block;color:var(--muted);font-weight:500;margin-top:6px;letter-spacing:.14em}
-  .name{font-size:clamp(64px,13vw,190px);margin-top:42px;display:flex;gap:.18em;flex-wrap:wrap;justify-content:center}
-  .name .w{display:inline-flex;overflow:hidden;padding-bottom:.04em}
-  .name .ch{display:inline-block;transform:translateY(110%);animation:up .9s cubic-bezier(.2,.9,.2,1) forwards}
-  @keyframes up{to{transform:none}}
-
-  .fan{position:relative;width:min(520px,90vw);height:200px;margin:-38px auto 0;z-index:3}
-  .card{position:absolute;left:50%;top:10px;width:150px;height:170px;border-radius:22px;
-        box-shadow:0 22px 40px -12px rgba(0,0,0,.35);transform-origin:50% 120%;
-        transition:transform .6s cubic-bezier(.3,1.4,.5,1);overflow:hidden;display:grid;place-items:center}
-  .card span{font-family:"Anton";font-size:24px;line-height:.9;text-transform:uppercase;color:#141414;text-align:center;padding:10px}
-  .fan .card:nth-child(1){background:var(--c3);transform:translateX(-160%) rotate(-16deg) translateY(10px)}
-  .fan .card:nth-child(2){background:var(--c2);transform:translateX(-95%) rotate(-6deg)}
-  .fan .card:nth-child(3){background:var(--c5);transform:translateX(-30%) rotate(5deg) translateY(4px)}
-  .fan .card:nth-child(4){background:var(--c4);transform:translateX(35%) rotate(14deg) translateY(16px)}
-  .fan .card:nth-child(2) span{color:#fff}
-  .fan:hover .card:nth-child(1){transform:translateX(-215%) rotate(-24deg) translateY(30px)}
-  .fan:hover .card:nth-child(2){transform:translateX(-110%) rotate(-9deg) translateY(-14px)}
-  .fan:hover .card:nth-child(3){transform:translateX(-5%) rotate(8deg) translateY(-12px)}
-  .fan:hover .card:nth-child(4){transform:translateX(95%) rotate(22deg) translateY(30px)}
-  .fan .card{animation:pop .9s cubic-bezier(.3,1.5,.5,1) both}
-  .fan .card:nth-child(2){animation-delay:.08s}.fan .card:nth-child(3){animation-delay:.16s}.fan .card:nth-child(4){animation-delay:.24s}
-  @keyframes pop{from{opacity:0;margin-top:80px}}
-
-  .role{font-size:clamp(40px,7.5vw,108px);color:var(--muted);margin-top:46px;opacity:.55;transition:color .6s}
-  .role .serif{color:var(--ink);opacity:1}
-  .clients{margin-top:44px}
-  .clients p{font:600 11px "Instrument Sans";letter-spacing:.16em;text-transform:uppercase}
-  .clients ul{list-style:none;display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin-top:10px;
-       color:var(--muted);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
-
-  /* bandeau */
-  .marquee{border-block:1.5px solid var(--ink);overflow:hidden;padding:18px 0;transform:rotate(-2deg);
-       margin:40px -20px;background:var(--c3);color:#141414}
-  .track{display:flex;gap:40px;white-space:nowrap;width:max-content;animation:scroll 28s linear infinite}
-  .track span{font-family:"Anton";font-size:38px;text-transform:uppercase}
-  .track i{font-style:normal;font-size:30px}
-  @keyframes scroll{to{transform:translateX(-50%)}}
-
-  /* carrousel 3D */
-  section{padding:110px 20px}
-  .h2{font-size:clamp(46px,7vw,92px);text-align:center}
-  .sub{text-align:center;color:var(--muted);margin-top:12px;font-size:17px}
-  .stage{perspective:1600px;height:560px;margin-top:60px;position:relative;user-select:none}
-  .ring{position:absolute;left:50%;top:0;width:350px;height:470px;margin-left:-175px;transform-style:preserve-3d;
-        transition:transform 1s cubic-bezier(.2,.8,.2,1)}
-  .slide{position:absolute;inset:0;border-radius:26px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;
-        backface-visibility:hidden;box-shadow:0 30px 60px -25px rgba(0,0,0,.4);color:#141414}
-  .slide .tag{font:600 11px "Instrument Sans";letter-spacing:.16em;text-transform:uppercase;
-        background:rgba(255,255,255,.55);padding:7px 12px;border-radius:99px;align-self:flex-start}
-  .slide h3{font-family:"Anton";font-size:44px;hyphens:auto;overflow-wrap:break-word;line-height:.92;text-transform:uppercase}
-  .slide p{font-size:15px;line-height:1.45;margin-top:12px}
-  .slide .art{position:absolute;inset:0;border-radius:26px;overflow:hidden;z-index:-1}
-  .slide.has-img{padding:0;overflow:hidden;cursor:none}
-  .slide .cover{height:52%;background-size:cover;background-position:center top;position:relative}
-  .slide .cover .tag{position:absolute;left:18px;top:18px}
-  .slide .txt{padding:20px 24px 24px;flex:1;display:flex;flex-direction:column;justify-content:space-between}
-  .slide.has-img h3{font-size:34px}
-  .slide.has-img p{font-size:14px;margin-top:8px}
-  .slide .more{font:600 11px "Instrument Sans";letter-spacing:.14em;text-transform:uppercase;margin-top:10px;opacity:.75}
-
-  /* vitrine Zyla */
-  .feature{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center}
-  .feature .kick{font:600 12px "Instrument Sans";letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
-  .feature h2{font-size:clamp(54px,7vw,104px);margin-top:14px}
-  .feature p{font-size:17px;line-height:1.55;margin-top:20px;max-width:470px}
-  .feature .facts{display:flex;gap:30px;margin-top:30px;flex-wrap:wrap}
-  .feature .facts b{display:block;font-family:"Anton";font-size:44px;line-height:1}
-  .feature .facts span{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-  .posters{position:relative;height:560px}
-  .posters img{position:absolute;top:40px;left:50%;width:250px;border-radius:14px;box-shadow:0 30px 60px -20px rgba(0,0,0,.45);
-       transform-origin:50% 110%;transition:transform .7s cubic-bezier(.3,1.4,.5,1)}
-  .posters img:nth-child(1){transform:translateX(-120%) rotate(-12deg)}
-  .posters img:nth-child(2){transform:translateX(-50%) translateY(-14px);z-index:2}
-  .posters img:nth-child(3){transform:translateX(20%) rotate(12deg)}
-  .posters:hover img:nth-child(1){transform:translateX(-150%) rotate(-18deg) translateY(20px)}
-  .posters:hover img:nth-child(2){transform:translateX(-50%) translateY(-40px) scale(1.04)}
-  .posters:hover img:nth-child(3){transform:translateX(50%) rotate(18deg) translateY(20px)}
-  .note{font-size:12px;color:var(--muted);margin-top:22px;max-width:470px;line-height:1.5}
-  .btn{display:inline-block;margin-top:28px;background:var(--ink);color:var(--bg);padding:15px 26px;border-radius:99px;border:none;
-       font:600 13px "Instrument Sans";letter-spacing:.1em;text-transform:uppercase;text-decoration:none;cursor:none;transition:transform .3s}
-  .btn:hover{transform:translateY(-3px) rotate(-2deg)}
-  @media (max-width:860px){.feature{grid-template-columns:1fr}.posters{height:440px}.posters img{width:180px}}
-
-  /* fiche projet */
-  .modal{position:fixed;inset:0;z-index:200;background:var(--bg);overflow-y:auto;opacity:0;pointer-events:none;
-       transform:translateY(40px);transition:opacity .45s,transform .6s cubic-bezier(.2,.8,.2,1)}
-  .modal.open{opacity:1;pointer-events:auto;transform:none}
-  .modal .close{position:fixed;top:24px;left:24px;z-index:210}
-  .m-inner{max-width:1100px;margin:0 auto;padding:110px 24px 120px}
-  .m-tag{font:600 12px "Instrument Sans";letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-  .m-title{font-size:clamp(52px,8vw,120px);margin-top:12px}
-  .m-cols{display:grid;grid-template-columns:1.4fr 1fr;gap:50px;margin-top:40px}
-  .m-cols p{font-size:18px;line-height:1.6}
-  .m-cols ul{list-style:none;border-top:1.5px solid var(--ink)}
-  .m-cols li{padding:12px 0;border-bottom:1px solid var(--soft);font-size:15px;display:flex;justify-content:space-between;gap:16px}
-  .m-cols li b{font-weight:600}
-  .m-gal{columns:2 360px;column-gap:20px;margin-top:60px}
-  .m-gal figure{break-inside:avoid;margin-bottom:20px}
-  .m-gal img{width:100%;display:block;border-radius:14px;box-shadow:0 20px 40px -24px rgba(0,0,0,.4)}
-  .m-gal figcaption{font-size:13px;color:var(--muted);margin-top:8px}
-  @media (max-width:760px){.m-cols{grid-template-columns:1fr}}
-  .controls{display:flex;justify-content:center;gap:12px;align-items:center;margin-top:10px}
-  .pill{border:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:12px 22px;border-radius:99px;
-        font:600 13px "Instrument Sans";letter-spacing:.1em;text-transform:uppercase;cursor:none;transition:.25s}
-  .pill:hover{background:var(--ink);color:var(--bg)}
-  .counter{font-family:"Anton";font-size:22px;min-width:70px;text-align:center}
-
-  /* grille */
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;max-width:1150px;margin:60px auto 0}
-  .tile{border-radius:24px;padding:28px;min-height:250px;background:var(--soft);display:flex;flex-direction:column;
-        justify-content:space-between;transition:transform .5s cubic-bezier(.3,1.4,.5,1),background .6s;
-        transform-style:preserve-3d;will-change:transform}
-  .tile .n{font-family:"Anton";font-size:72px;line-height:1}
-  .tile h4{font-family:"Anton";font-size:30px;hyphens:auto;overflow-wrap:break-word;text-transform:uppercase;line-height:1}
-  .tile p{color:var(--muted);margin-top:8px;line-height:1.45}
-  .tile.accent{background:var(--c1);color:#141414}.tile.accent p{color:#3b1409}
-
-  /* à propos */
-  .about{max-width:1000px;margin:0 auto}
-  .big-text{font-size:clamp(26px,3.6vw,46px);line-height:1.22;font-weight:500;letter-spacing:-.01em}
-  .big-text .word{opacity:.15;transition:opacity .4s}
-  .big-text .word.lit{opacity:1}
+  /* parcours */
+  .cols{display:grid;grid-template-columns:1.3fr 1fr;gap:60px;margin-top:40px}
+  .timeline{list-style:none;border-top:1.5px solid var(--ink)}
+  .timeline li{display:grid;grid-template-columns:120px 1fr;gap:18px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .timeline .y{font-size:14px;color:var(--muted);padding-top:2px}
+  .timeline b{font-weight:600}
+  .timeline span{display:block;color:var(--muted);font-size:15px}
+  .side h4{font:600 12px "Instrument Sans";letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+  .side p{margin-bottom:28px}
+  .side .tag{color:var(--muted)}
 
   /* contact */
-  .contact{text-align:center;padding:140px 20px 80px}
-  .mega{font-size:clamp(70px,16vw,240px);display:inline-block;transition:transform .4s;text-decoration:none}
-  .mega:hover{transform:skewX(-8deg) scale(1.02);color:var(--c1)}
-  footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:30px 28px;
-         font:500 12px "Instrument Sans";letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .contact h2{font-size:clamp(48px,8vw,104px)}
+  .contact p{font-size:20px;margin-top:22px;max-width:620px}
+  .contact .mail{font-size:clamp(22px,3vw,32px);font-weight:500;display:inline-block;margin-top:26px;text-underline-offset:6px}
+  .contact .mail:hover{color:var(--accent)}
+  footer{border-top:1px solid var(--line);padding:26px 0;font-size:14px;color:var(--muted)}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
-  .reveal{opacity:0;transform:translateY(50px);transition:opacity 1s,transform 1s cubic-bezier(.2,.8,.2,1)}
-  .reveal.in{opacity:1;transform:none}
+  /* fiche projet */
+  .modal{position:fixed;inset:0;z-index:50;background:var(--bg);overflow-y:auto;display:none}
+  .modal.open{display:block}
+  .modal .bar{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line)}
+  .modal .bar .wrap{height:60px;display:flex;align-items:center}
+  .modal .close{background:none;border:none;font:600 15px "Instrument Sans";cursor:pointer;color:var(--ink)}
+  .m-inner{padding-top:50px;padding-bottom:100px}
+  .m-title{font-size:clamp(48px,7vw,96px);margin-top:10px}
+  .m-cols{display:grid;grid-template-columns:1.5fr 1fr;gap:50px;margin-top:36px}
+  .m-cols h4{font:600 12px "Instrument Sans";letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:26px 0 6px}
+  .m-cols h4:first-child{margin-top:0}
+  .m-cols ul{list-style:none;border-top:1.5px solid var(--ink);align-self:start}
+  .m-cols li{padding:11px 0;border-bottom:1px solid var(--line);font-size:15px;display:flex;justify-content:space-between;gap:16px}
+  .m-cols li b{font-weight:600}
+  .m-gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;margin-top:56px}
+  .m-gal img{border-radius:6px;border:1px solid var(--line)}
+  .m-gal figcaption{font-size:13px;color:var(--muted);margin-top:8px}
 
-  @media (max-width:640px){
-    .stage{height:500px}.ring{width:280px;height:420px;margin-left:-140px}.slide h3{font-size:38px}.slide.has-img h3{font-size:28px}
-    .card{width:110px;height:130px}.card span{font-size:22px}.fan{height:160px}
+  @media (max-width:820px){
+    .intro .wrap,.case,.cols,.m-cols{grid-template-columns:1fr}
+    .intro .wrap{gap:36px}
+    .photo{max-width:320px}
+    nav ul{gap:14px}nav ul a{font-size:14px}nav .me{font-size:17px}
+    .timeline li{grid-template-columns:90px 1fr}
   }
-  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.name .ch{transform:none}.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
-<div class="cursor"></div><div class="cursor-label">Glisser</div>
 
-<a href="#top" class="fab fab-top" data-cursor="Haut" aria-label="Retour en haut">ED</a>
-<button class="fab fab-theme" id="themeBtn" data-cursor="Couleur" aria-label="Changer les couleurs">
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9.5" stroke="currentColor" stroke-width="2"/><circle cx="8.5" cy="9" r="1.6" fill="currentColor"/><circle cx="13" cy="7.3" r="1.6" fill="currentColor"/><circle cx="16.4" cy="11" r="1.6" fill="currentColor"/><path d="M12 21.5c-1.5 0-2-1.4-1.2-2.6.9-1.3.3-3-1.5-3H7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-</button>
-<div class="theme-name" id="themeName">Jour</div>
-
-<header class="hero" id="top">
-  <div class="meta">Bruxelles, Belgique<small>Étudiant en communication — ISFSC</small></div>
-  <h1 class="name display" id="name" aria-label="Elyas Dinart"><span class="w">Elyas</span><span class="w">Dinart</span></h1>
-  <div class="fan" data-cursor="Hello">
-    <div class="card"><span>Écrire</span></div>
-    <div class="card"><span>Orga-<br>niser</span></div>
-    <div class="card"><span>Racon-<br>ter</span></div>
-    <div class="card"><span>Convain-<br>cre</span></div>
+<nav>
+  <div class="wrap">
+    <a href="#top" class="me">Elyas Dinart</a>
+    <ul><li><a href="#projets">Projets</a></li><li><a href="#parcours">Parcours</a></li><li><a href="#contact">Contact</a></li></ul>
   </div>
-  <div class="role display">Communicant,<br><span class="serif">rédacteur</span> &amp; organisateur</div>
-  <div class="clients">
-    <p>Expériences &amp; terrains de jeu :</p>
-    <ul><li>Commission européenne</li><li>DG DIGIT</li><li>Agence Kaizoku</li><li>ISFSC</li></ul>
+</nav>
+
+<header class="intro" id="top">
+  <div class="wrap">
+    <div>
+      <div class="label">Étudiant en communication · Bruxelles</div>
+      <h1 class="display">Elyas<br>Dinart</h1>
+      <p class="lead">En deuxième année de communication à l'ISFSC. Au printemps 2026, j'ai écrit pour l'intranet de la Commission européenne. Le reste du temps, on me trouve derrière un comptoir du Westland. Dans les deux cas, j'ai appris la même chose : <span class="serif">on n'a que quelques secondes pour se faire comprendre.</span></p>
+      <div class="links">
+        <a href="#projets">Voir mes projets ↓</a>
+        <a href="https://www.linkedin.com/in/elyas-dinart-75052b382/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="photo">
+      <!-- PHOTO : remplacer la ligne ci-dessous par <img src="img/photo.jpg" alt="Elyas Dinart"> -->
+      <div class="photo-vide" aria-hidden="true">ED</div>
+    </div>
   </div>
 </header>
 
-<div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
+<section id="projets">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="display">Projets</h2>
+      <p>D'abord ce que j'ai fait en stage, puis mes travaux à l'ISFSC.</p>
+    </div>
+    <div id="cases"></div>
+  </div>
+</section>
 
-<section id="zyla">
-  <div class="feature">
-    <div>
-      <div class="kick reveal">Projet phare · ISFSC 2026</div>
-      <h2 class="display reveal">Choisis ton<br>power-up.</h2>
-      <p class="reveal">Une campagne 360° pour Zyla, la boisson énergisante naturelle de Spadel. L'idée : chaque canette devient un « power-up », comme dans un jeu vidéo, que tu choisis selon ton moment de la journée. Cible : les 18-25 ans.</p>
-      <div class="facts reveal">
-        <div><b>50</b><span>idées testées</span></div>
-        <div><b>1</b><span>concept retenu</span></div>
-        <div><b>37</b><span>pages de reco</span></div>
+<section id="parcours">
+  <div class="wrap">
+    <h2 class="display">Parcours</h2>
+    <div class="cols">
+      <ul class="timeline">
+        <li><div class="y">2024 – auj.</div><div><b>ISFSC, bachelier en communication</b><span>En 2e année. Campagne 360°, réseaux sociaux, radio, podcast.</span></div></li>
+        <li><div class="y">Avr. – juin 2026</div><div><b>Stage à la Commission européenne</b><span>DG DIGIT, unité Organisation Development &amp; Communication.</span></div></li>
+        <li><div class="y">2023 – 2024</div><div><b>EPHEC, Business International</b></div></li>
+        <li><div class="y">2022 – 2023</div><div><b>ULB, sciences politiques</b></div></li>
+        <li><div class="y">2015 – 2022</div><div><b>École européenne de Bruxelles IV</b><span>Secondaire, option économie.</span></div></li>
+        <li><div class="y">Depuis 2021</div><div><b>Jobs étudiants</b><span>Carrefour, puis Burger King, Makifornia, O'Tacos. Aujourd'hui au Burger King du Westland.</span></div></li>
+      </ul>
+      <div class="side">
+        <h4>Langues</h4>
+        <p>Français, langue maternelle.<br>Anglais, bilingue : c'était ma langue de travail en stage.<br>Néerlandais, notions.</p>
+        <h4>Outils</h4>
+        <p>Word et PowerPoint, tous les jours.<br><span class="tag">En train d'apprendre :</span> InDesign, Premiere Pro, WordPress (Divi).</p>
+        <h4>Ce que je cherche</h4>
+        <p>Un stage où je peux écrire, préparer des contenus et voir comment une vraie équipe de communication travaille.</p>
       </div>
-      <button class="btn reveal" data-open="0" data-cursor="Ouvrir">Voir le projet →</button>
-      <p class="note reveal">Projet d'école réalisé au sein de l'agence fictive Kaizoku. Zyla et Spadel n'ont pas commandé ce travail.</p>
-    </div>
-    <div class="posters reveal" data-cursor="Zyla">
-      <img src="img/affiche_reveil.jpg" alt="Affiche « Réveil difficile ? » de la campagne Zyla Power-Up" loading="lazy">
-      <img src="img/affiche_blocus.jpg" alt="Affiche « Blocus, niveau 7. » de la campagne Zyla Power-Up" loading="lazy">
-      <img src="img/affiche_coupdemou.jpg" alt="Affiche « Coup de mou de 15 h ? » de la campagne Zyla Power-Up" loading="lazy">
     </div>
   </div>
 </section>
 
-<section id="travail">
-  <h2 class="h2 display reveal">Travail choisi</h2>
-  <p class="sub reveal">Six projets réels. Glisse pour tourner, clique pour ouvrir.</p>
-  <div class="stage reveal" id="stage" data-cursor="Glisser">
-    <div class="ring" id="ring"></div>
-  </div>
-  <div class="controls">
-    <button class="pill" id="prev" data-cursor="←">Préc.</button>
-    <div class="counter" id="counter">01/06</div>
-    <button class="pill" id="next" data-cursor="→">Suiv.</button>
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2 class="display">On en parle&nbsp;?</h2>
+    <p>Pour un stage, une question sur un projet ou juste un café à Bruxelles.</p>
+    <a class="mail" id="mail" href="#">elyasdinart27@gmail.com</a>
   </div>
 </section>
 
-<section id="savoir-faire">
-  <h2 class="h2 display reveal">Ce que je sais faire</h2>
-  <p class="sub reveal">Et ce que j'apprends chaque semaine.</p>
-  <div class="grid">
-    <div class="tile reveal"><div class="n">01</div><div><h4>Communication interne</h4><p>Faire circuler la bonne info, au bon moment, auprès des bonnes équipes.</p></div></div>
-    <div class="tile reveal accent"><div class="n">02</div><div><h4>Rédaction web</h4><p>Articles intranet, posts, newsletters : clairs, courts, lus jusqu'au bout.</p></div></div>
-    <div class="tile reveal"><div class="n">03</div><div><h4>Événementiel</h4><p>Logistique, planning, coordination le jour J. Rien n'est laissé au hasard.</p></div></div>
-    <div class="tile reveal"><div class="n">04</div><div><h4>Stratégie de campagne</h4><p>Positionnement, analyse de la concurrence, message clé, plan média.</p></div></div>
-    <div class="tile reveal"><div class="n">05</div><div><h4>Réseaux sociaux</h4><p>Calendriers éditoriaux, formats courts, ton de marque.</p></div></div>
-    <div class="tile reveal"><div class="n">06</div><div><h4>Outils IA</h4><p>Je m'en sers pour aller plus vite, pas pour penser à ma place.</p></div></div>
-  </div>
-</section>
-
-<section class="about" id="apropos">
-  <h2 class="h2 display reveal" style="margin-bottom:50px">À propos</h2>
-  <p class="big-text" id="bigText">Je m'appelle Elyas, j'étudie la communication à Bruxelles. J'ai passé deux mois à la Commission européenne, dans l'unité qui s'occupe du développement de l'organisation et de la communication de la DG DIGIT : articles pour l'intranet, communication interne, logistique d'événements. J'aime quand un message simple fait bouger des gens. Je cherche des projets concrets, des marques locales et des équipes qui ont envie de mieux se raconter.</p>
-</section>
-
-<section class="contact">
-  <p class="meta reveal">Un projet, un stage, une idée ?</p>
-  <a class="mega display reveal" id="mail" href="#" data-cursor="Écrire">On en parle&nbsp;→</a>
-</section>
+<footer><div class="wrap"><span>© <span id="yr"></span> Elyas Dinart</span><a href="https://www.linkedin.com/in/elyas-dinart-75052b382/" target="_blank" rel="noopener">LinkedIn</a></div></footer>
 
 <div class="modal" id="modal" aria-hidden="true">
-  <button class="pill close" id="mClose" data-cursor="Fermer">← Retour</button>
-  <div class="m-inner" id="mBody"></div>
+  <div class="bar"><div class="wrap"><button class="close" id="mClose">← Retour aux projets</button></div></div>
+  <div class="wrap m-inner" id="mBody"></div>
 </div>
 
-<footer><span>© <span id="yr"></span> Elyas Dinart</span><span>Fait à Bruxelles</span><a href="#top">Retour en haut ↑</a></footer>
-
 <script>
-/* ====== À PERSONNALISER ====== */
-const EMAIL = "elyasdinart27@gmail.com"; // ex : "prenom.nom@gmail.com" — laisse vide tant que tu n'as pas choisi
-/* ============================ */
-
+const EMAIL = "elyasdinart27@gmail.com";
 document.getElementById('yr').textContent = new Date().getFullYear();
-const mail = document.getElementById('mail');
-if (EMAIL) mail.href = "mailto:" + EMAIL; else mail.addEventListener('click', e => e.preventDefault());
+document.getElementById('mail').href = "mailto:" + EMAIL;
 
-/* nom lettre par lettre */
-let d = 0;
-document.querySelectorAll('#name .w').forEach(w => {
-  const t = w.textContent; w.textContent = '';
-  [...t].forEach(c => { const s = document.createElement('span'); s.className = 'ch'; s.textContent = c;
-    s.style.animationDelay = (d += 0.045) + 's'; w.appendChild(s); });
-});
+const ZYLA_NOTE = "Projet d'école réalisé au sein de l'agence fictive Kaizoku. Zyla et Spadel n'ont pas commandé ce travail.";
 
-/* bandeau */
-const words = ["Communication interne","Rédaction","Événements","Stratégie","Réseaux sociaux","Campagnes","Storytelling"];
-const tr = document.getElementById('track');
-const once = words.map(w => `<span>${w}</span><i>✺</i>`).join('');
-tr.innerHTML = once + once;
-
-/* thèmes */
-const themes = [["jour","Jour"],["nuit","Nuit"],["menthe","Menthe"],["brique","Brique"]];
-let ti = 0; const tn = document.getElementById('themeName');
-document.getElementById('themeBtn').addEventListener('click', () => {
-  ti = (ti + 1) % themes.length; document.body.dataset.theme = themes[ti][0];
-  tn.textContent = themes[ti][1]; tn.classList.add('show');
-  clearTimeout(tn._t); tn._t = setTimeout(() => tn.classList.remove('show'), 1400);
-});
-
-/* curseur */
-const cur = document.querySelector('.cursor'), lab = document.querySelector('.cursor-label');
-let mx = innerWidth/2, my = innerHeight/2, cx = mx, cy = my;
-addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-(function loop(){ cx += (mx-cx)*.2; cy += (my-cy)*.2;
-  cur.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%)`;
-  lab.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%)`;
-  requestAnimationFrame(loop); })();
-document.querySelectorAll('[data-cursor]').forEach(el => {
-  el.addEventListener('mouseenter', () => { cur.classList.add('big'); lab.textContent = el.dataset.cursor; lab.classList.add('on'); });
-  el.addEventListener('mouseleave', () => { cur.classList.remove('big'); lab.classList.remove('on'); });
-});
-
-/* carrousel 3D */
 const projects = [
-  {tag:"ISFSC · Campagne 360°", t:"Zyla Power-Up", p:"Campagne pour une boisson énergisante naturelle, pensée comme un jeu vidéo.", bg:"#c6f24e", cover:"img/reco01.jpg",
-   long:"Pour le Projet 2 de l'ISFSC, j'ai monté une agence fictive, Kaizoku, et choisi Zyla comme annonceur. Le problème de départ : une marque connue de presque tous les étudiants, mais achetée par très peu d'entre eux. J'ai testé 50 pistes, gardé 5, puis 3, puis une seule : « Choisis ton power-up ». Les trois canettes deviennent trois bonus de jeu vidéo, un pour chaque moment de la journée. La recommandation de 37 pages couvre le brief, un volet durable et éthique, le concept, la campagne (affichage campus, réseaux, borne d'arcade, influence) et les annexes.",
-   facts:[["Rôle","Stratégie, concept, direction artistique"],["Cible","Étudiants de 18 à 25 ans"],["Livrable","Recommandation de 37 pages"],["Année","2026"]],
-   gal:[["img/reco01.jpg","La couverture de la recommandation"],["img/affiche_choisis.jpg","Affiche « Choisis ton power-up »"],["img/affiche_reveil.jpg","Le matin : Power Boost"],["img/affiche_blocus.jpg","Le blocus : Focus Fuel"],["img/affiche_coupdemou.jpg","L'après-midi : Kick Me-Up"],["img/ecran_selection.jpg","L'écran de sélection, comme dans un jeu vidéo"],["img/reco16.jpg","Chaque canette est un power-up"],["img/reco18.jpg","La signature : « Ton power-up, ton Zyla. »"],["img/reco20.jpg","Un univers visuel par power-up"],["img/reco07.jpg","Deux personas, une même journée"]]},
-  {tag:"ISFSC · Réseaux sociaux", t:"Level up sur les réseaux", p:"Stratégie digitale et community management sur 12 mois.", bg:"#2f4cff", fg:"#fff", cover:"img/strat01.jpg",
-   long:"La suite de la campagne Zyla, côté réseaux sociaux. J'ai fait l'audit des comptes existants, choisi deux réseaux prioritaires à partir des études d'audience, défini quatre rubriques de contenu et une ligne éditoriale, puis construit un calendrier sur 12 mois. Pour la partie payante, j'ai utilisé le modèle SEE-THINK-DO, avec du retargeting, des KPI et un budget calculé à partir des CPM et des taux de clic.",
-   facts:[["Rôle","Stratégie digitale, ligne éditoriale"],["Méthode","Audit, personas, SEE-THINK-DO"],["Livrable","Recommandation de 15 pages"],["Année","2026"]],
-   gal:[["img/strat01.jpg","La couverture"],["img/strat07.jpg","Quatre rubriques, avec un exemple de post pour chacune"],["img/strat13.jpg","Trois publicités pour trois audiences"]]},
-  {tag:"ISFSC · Analyse", t:"Audit concurrentiel", p:"Red Bull et Ciao Energy passés au crible.", bg:"#ffd23f", cover:"img/audit01.jpg",
-   long:"Avant de proposer quoi que ce soit, il fallait comprendre le marché. J'ai analysé les deux concurrents les plus présents dans les magasins belges : leur positionnement, leurs messages, leurs réseaux sociaux et leurs chiffres d'audience. J'ai ensuite comparé Zyla à chacun. Le constat : Red Bull ne vend pas une boisson mais un état d'esprit, et Zyla est presque absente des réseaux. C'est de là qu'est partie toute la campagne.",
-   facts:[["Rôle","Recherche et analyse"],["Sources","Comptes officiels, relevés en magasin"],["Livrable","Dossier de 14 pages"],["Année","2026"]],
-   gal:[["img/audit01.jpg","La couverture"],["img/audit02.jpg","Le paysage concurrentiel"],["img/audit10.jpg","Zyla face aux deux concurrents"]]},
-  {tag:"ISFSC · Identité", t:"Agence Kaizoku", p:"L'identité de mon agence : nom, logo, cahier ADN, goodies.", bg:"#ffb8d2", cover:"img/adn01.jpg",
-   long:"Kaizoku veut dire « pirate » en japonais. J'ai choisi ce nom pour une agence qui ose sortir des sentiers battus. J'ai construit son identité : le logo en vague, les couleurs, un cahier ADN de 4 pages avec la mission et les valeurs, et une série de goodies (tote bag, carnet, stickers, pin's).",
-   facts:[["Rôle","Naming, identité visuelle"],["Livrables","Cahier ADN, goodies"],["Outils","InDesign, Illustrator"],["Année","2026"]],
-   gal:[["img/adn01.jpg","Le cahier ADN, couverture"],["img/adn02.jpg","La page « Qui suis-je »"],["img/goodies.jpg","Les goodies de l'agence"]]},
-  {tag:"Stage · 2 mois", t:"Commission européenne", p:"DG DIGIT : communication interne, articles, événements.", bg:"#ff5a36", cover:"img/stage_salle.jpg",
-   long:"Deux mois dans l'unité Organisation Development & Communication de la DG DIGIT, au bâtiment Charlemagne. J'ai rédigé des articles pour l'intranet en suivant le guide de style de la Commission (en anglais), photographié des événements et participé à la logistique de Digital Now 2026, la conférence annuelle de la DG sur la souveraineté numérique et l'IA. J'ai aussi suivi en réunion les projets de l'équipe, comme le lancement de l'IA interne de la Commission.",
-   facts:[["Unité","DIGIT.R1, Bruxelles"],["Missions","Rédaction, photo, événements"],["Langue","Anglais (guide de style CE)"],["Période","Mai – juin 2026"]],
+  {ctx:"Stage · Commission européenne, DG DIGIT · Avril – juin 2026", t:"Communication interne à la Commission",
+   cover:"img/stage_salle.jpg", capt:"Digital Now 2026, au bâtiment Charlemagne",
+   short:"Deux mois dans l'unité qui gère la communication interne de la DG DIGIT. J'écrivais des articles pour l'intranet, en anglais, et j'ai aidé à préparer Digital Now 2026, la conférence annuelle de la DG.",
+   context:"La DG DIGIT s'occupe des outils numériques de toute la Commission. Son unité R1 informe le personnel de ce qui change : nouveaux outils, projets, événements. J'y ai passé deux mois, au bâtiment Charlemagne.",
+   did:"J'ai rédigé des articles pour l'intranet en suivant le guide de style de la Commission, en anglais. J'ai photographié des événements et participé à la logistique de Digital Now 2026, une conférence sur la souveraineté numérique et l'IA. J'ai aussi suivi en réunion les projets de l'équipe, comme le lancement de l'IA interne de la Commission.",
+   learn:"Écrire pour des collègues très occupés, ça oblige à aller droit au but. Le guide de style m'a appris à couper tout ce qui ne sert pas le message.",
+   facts:[["Unité","DIGIT.R1, Bruxelles"],["Missions","Rédaction, photo, événements"],["Langue","Anglais"],["Période","Avril – juin 2026"]],
    gal:[["img/stage_salle.jpg","Digital Now 2026, au Charlemagne"],["img/stage_agenda.jpg","Le programme de la conférence"]]},
-  {tag:"Stage · Concept", t:"AI Quest", p:"Un jeu d'équipe de 10 jours pour apprivoiser l'IA.", bg:"#9fb8ff", cover:"img/aiqA.jpg",
-   long:"Pendant mon stage, j'ai imaginé un concept pour donner envie aux agents de la Commission de découvrir l'IA. Pendant 10 jours, une mission courte apparaît chaque jour : quiz vrai ou faux, bataille de prompts, « Spot the AI »… Les équipes gagnent des points sur un classement visible par tous. J'ai défini les mécaniques de jeu, les canaux (SharePoint, Teams, e-mail), le ton et le planning.",
-   facts:[["Rôle","Concept, mécaniques de jeu"],["Format","10 jours, 5 min par jour"],["Public","Tout le personnel"],["Année","2026"]],
-   gal:[["img/aiqA.jpg","La page de garde du concept"],["img/aiqB.jpg","Le déroulé des défis"]]}
-];
-const arts = {
-  rings:`<svg width="100%" height="100%" viewBox="0 0 340 420"><g fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2">${[40,80,120,160,200].map(r=>`<circle cx="300" cy="80" r="${r}"/>`).join('')}</g></svg>`,
-  lines:`<svg width="100%" height="100%" viewBox="0 0 340 420"><g stroke="rgba(0,0,0,.12)" stroke-width="10">${[...Array(12)].map((_,i)=>`<line x1="${i*40-80}" y1="0" x2="${i*40+60}" y2="200"/>`).join('')}</g></svg>`,
-  dots:`<svg width="100%" height="100%" viewBox="0 0 340 420"><g fill="rgba(0,0,0,.13)">${[...Array(48)].map((_,i)=>`<circle cx="${(i%8)*42+20}" cy="${Math.floor(i/8)*28+20}" r="${4+(i%5)}"/>`).join('')}</g></svg>`,
-  wave:`<svg width="100%" height="100%" viewBox="0 0 340 420"><g fill="none" stroke="rgba(0,0,0,.16)" stroke-width="6">${[0,22,44,66,88].map(o=>`<path d="M-10 ${40+o} Q 60 ${0+o} 130 ${40+o} T 270 ${40+o} T 410 ${40+o}"/>`).join('')}</g></svg>`,
-  star:`<svg width="100%" height="100%" viewBox="0 0 340 420"><g transform="translate(250 90)"><path d="M0-70 L14-14 70 0 14 14 0 70-14 14-70 0-14-14Z" fill="rgba(0,0,0,.12)"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="14s" repeatCount="indefinite"/></path></g></svg>`
-};
-const ring = document.getElementById('ring'), N = projects.length, step = 360/N;
-const radius = () => innerWidth < 640 ? 300 : 420;
-projects.forEach((pr,i) => {
-  const s = document.createElement('article'); s.className = 'slide';
-  s.style.background = pr.bg; if (pr.fg) s.style.color = pr.fg;
-  s.classList.add('has-img');
-  s.innerHTML = `<div class="cover" style="background-image:url(${pr.cover})"><span class="tag">${pr.tag}</span></div><div class="txt"><div><h3>${pr.t}</h3><p>${pr.p}</p></div><div class="more">Ouvrir le projet →</div></div>`;
-  s.dataset.i = i; ring.appendChild(s);
-});
-let idx = 0, rot = 0;
-function place(){
-  ring.querySelectorAll('.slide').forEach((s,i) => s.style.transform = `rotateY(${i*step}deg) translateZ(${radius()}px)`);
-  ring.style.transform = `translateZ(${-radius()}px) rotateY(${rot}deg)`;
-  document.getElementById('counter').textContent = String(((idx%N)+N)%N+1).padStart(2,'0') + '/' + String(N).padStart(2,'0');
-}
-function go(dir){ idx += dir; rot = -idx*step; place(); }
-document.getElementById('next').onclick = () => go(1);
-document.getElementById('prev').onclick = () => go(-1);
-addEventListener('keydown', e => { if (e.key==='ArrowRight') go(1); if (e.key==='ArrowLeft') go(-1); });
-addEventListener('resize', place);
-let sx = null;
-const stage = document.getElementById('stage');
-stage.addEventListener('pointerdown', e => { sx = e.clientX; ring.style.transition = 'none'; });
-addEventListener('pointermove', e => { if (sx===null) return; ring.style.transform = `translateZ(${-radius()}px) rotateY(${rot + (e.clientX-sx)*.25}deg)`; });
-addEventListener('pointerup', e => { if (sx===null) return; ring.style.transition = '';
-  const dx = e.clientX - sx; sx = null; const n = Math.round(-dx*.25/step);
-  if (n) { go(n); return; }
-  place();
-  if (Math.abs(dx) < 6) { const sl = e.target.closest('.slide'); if (sl) openProject(+sl.dataset.i); } });
 
-/* fiche projet */
+  {ctx:"Stage · Concept proposé à l'équipe · 2026", t:"AI Quest",
+   cover:"img/aiqA.jpg", capt:"La page de garde du concept",
+   short:"Un jeu d'équipe de dix jours pour que le personnel de la Commission ose essayer l'IA. J'ai imaginé les défis, les canaux et le planning.",
+   context:"La Commission lançait son IA interne. Beaucoup d'agents ne l'avaient jamais ouverte, souvent parce qu'ils ne savaient pas par où commencer.",
+   did:"J'ai proposé un jeu sur dix jours : chaque jour, une mission de cinq minutes (vrai ou faux, bataille de prompts, « Spot the AI »). Les équipes gagnent des points sur un classement visible par tout le monde. J'ai défini les règles, les canaux (SharePoint, Teams, e-mail), le ton et le calendrier.",
+   learn:"Pour faire adopter un outil, une affiche ne suffit pas. Il faut donner aux gens une raison d'essayer, et un peu de compétition entre collègues aide beaucoup.",
+   facts:[["Rôle","Concept, règles du jeu"],["Format","10 jours, 5 min par jour"],["Public","Tout le personnel"],["Année","2026"]],
+   gal:[["img/aiqA.jpg","La page de garde du concept"],["img/aiqB.jpg","Le déroulé des défis"]]},
+
+  {ctx:"ISFSC · Projet Zyla · Analyse", t:"Audit de la concurrence",
+   cover:"img/audit10.jpg", capt:"Relevé de prix en magasin : Zyla presque absente",
+   short:"Avant de proposer une campagne pour Zyla, je suis allé voir les rayons. J'ai comparé la marque à Red Bull et à Ciao Energy : prix, messages, réseaux sociaux.",
+   context:"Zyla est une boisson énergisante naturelle de Spadel. La marque est connue des étudiants, mais très peu l'achètent. Il fallait comprendre pourquoi avant de proposer quoi que ce soit.",
+   did:"J'ai analysé les deux concurrents les plus présents en Belgique : leur positionnement, leurs messages, leurs réseaux et leurs audiences. J'ai fait un relevé de prix en magasin, puis j'ai comparé Zyla à chacun.",
+   learn:"Red Bull ne vend pas une boisson, il vend un état d'esprit. Et Zyla était presque invisible en rayon comme sur les réseaux. Toute la suite du projet est partie de ce constat.",
+   facts:[["Rôle","Recherche et analyse"],["Sources","Comptes officiels, relevés en magasin"],["Livrable","Dossier de 14 pages"],["Année","2026"]],
+   gal:[["img/audit01.jpg","La couverture"],["img/audit02.jpg","Le paysage concurrentiel"],["img/audit10.jpg","Zyla face aux deux concurrents"]],
+   note:ZYLA_NOTE},
+
+  {ctx:"ISFSC · Projet Zyla · Réseaux sociaux", t:"Stratégie réseaux sociaux",
+   cover:"img/strat07.jpg", capt:"Quatre rubriques, avec un exemple de post pour chacune",
+   short:"Un plan sur douze mois pour que Zyla existe enfin sur les réseaux : audit des comptes, choix de deux réseaux, quatre rubriques et un budget publicitaire.",
+   context:"L'audit avait montré que Zyla était presque absente des réseaux, alors que sa cible, les 18-25 ans, y passe beaucoup de temps.",
+   did:"J'ai audité les comptes existants, choisi deux réseaux à partir des études d'audience, défini quatre rubriques et une ligne éditoriale, puis construit un calendrier sur douze mois. Pour la publicité, j'ai utilisé le modèle SEE-THINK-DO, avec des KPI et un budget calculé à partir des CPM et des taux de clic.",
+   learn:"Choisir deux réseaux et les tenir vaut mieux qu'être partout à moitié.",
+   facts:[["Rôle","Stratégie digitale, ligne éditoriale"],["Méthode","Audit, personas, SEE-THINK-DO"],["Livrable","Recommandation de 15 pages"],["Année","2026"]],
+   gal:[["img/strat01.jpg","La couverture"],["img/strat07.jpg","Quatre rubriques, un exemple de post pour chacune"],["img/strat13.jpg","Trois publicités pour trois audiences"]],
+   note:ZYLA_NOTE},
+
+  {ctx:"ISFSC · Identité d'agence", t:"Agence Kaizoku",
+   cover:"img/adn01.jpg", capt:"Le cahier ADN, couverture",
+   short:"Pour le projet de deuxième année, chaque étudiant crée son agence. La mienne s'appelle Kaizoku, « pirate » en japonais.",
+   context:"Le projet de l'ISFSC demande de travailler comme une vraie agence, avec un nom, une identité et des valeurs.",
+   did:"J'ai choisi le nom, dessiné le logo en vague, fixé les couleurs et écrit un cahier ADN de quatre pages avec la mission et les valeurs. J'ai aussi imaginé quelques goodies : tote bag, carnet, stickers, pin's.",
+   learn:"Trouver un nom, c'est facile. Expliquer en trois lignes pourquoi c'est le bon, c'est là que le travail commence.",
+   facts:[["Rôle","Nom, identité visuelle"],["Livrables","Cahier ADN, goodies"],["Outil","InDesign"],["Année","2026"]],
+   gal:[["img/adn01.jpg","Le cahier ADN, couverture"],["img/adn02.jpg","La page « Qui suis-je »"],["img/goodies.jpg","Les goodies de l'agence"]]}
+];
+
+const cases = document.getElementById('cases');
+projects.forEach((p,i) => {
+  const el = document.createElement('article');
+  el.className = 'case';
+  el.innerHTML = `<div class="body"><div class="num">${String(i+1).padStart(2,'0')}</div><h3>${p.t}</h3><div class="ctx">${p.ctx}</div>
+      <p>${p.short}</p><button class="open" data-i="${i}">Lire le projet →</button>${p.note?`<p class="school">${p.note}</p>`:''}</div>
+    <figure><img src="${p.cover}" alt="${p.capt}" loading="lazy" data-i="${i}"><figcaption>${p.capt}</figcaption></figure>`;
+  cases.appendChild(el);
+});
+
 const modal = document.getElementById('modal'), mBody = document.getElementById('mBody');
 function openProject(i){
   const p = projects[i];
-  mBody.innerHTML = `<div class="m-tag">${p.tag}</div><h2 class="m-title display">${p.t}</h2>
-    <div class="m-cols"><p>${p.long}</p><ul>${p.facts.map(f=>`<li><b>${f[0]}</b><span>${f[1]}</span></li>`).join('')}</ul></div>
+  mBody.innerHTML = `<div class="label">${p.ctx}</div><h2 class="m-title display">${p.t}</h2>
+    <div class="m-cols"><div><h4>Le contexte</h4><p>${p.context}</p><h4>Ce que j'ai fait</h4><p>${p.did}</p><h4>Ce que j'en retiens</h4><p>${p.learn}</p>
+    ${p.note?`<p class="school">${p.note}</p>`:''}</div>
+    <ul>${p.facts.map(f=>`<li><b>${f[0]}</b><span>${f[1]}</span></li>`).join('')}</ul></div>
     <div class="m-gal">${p.gal.map(g=>`<figure><img src="${g[0]}" alt="${g[1]}" loading="lazy"><figcaption>${g[1]}</figcaption></figure>`).join('')}</div>`;
   modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); modal.scrollTop = 0;
   document.body.style.overflow = 'hidden';
 }
 function closeProject(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; }
 document.getElementById('mClose').onclick = closeProject;
-addEventListener('keydown', e => { if (e.key==='Escape') closeProject(); });
-document.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => openProject(+b.dataset.open)));
-place();
-
-/* inclinaison des tuiles */
-document.querySelectorAll('.tile').forEach(t => {
-  t.addEventListener('mousemove', e => { const r = t.getBoundingClientRect();
-    const x = (e.clientX-r.left)/r.width-.5, y = (e.clientY-r.top)/r.height-.5;
-    t.style.transform = `perspective(800px) rotateX(${-y*10}deg) rotateY(${x*12}deg) translateY(-6px)`; });
-  t.addEventListener('mouseleave', () => t.style.transform = '');
-});
-
-/* apparition au scroll */
-const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }), {threshold:.15});
-document.querySelectorAll('.reveal').forEach((el,i) => { el.style.transitionDelay = (i%3)*0.08+'s'; io.observe(el); });
-
-/* texte qui s'allume mot par mot */
-const bt = document.getElementById('bigText');
-bt.innerHTML = bt.textContent.split(' ').map(w => `<span class="word">${w}</span>`).join(' ');
-const ws = bt.querySelectorAll('.word');
-function lit(){ const r = bt.getBoundingClientRect(); const p = Math.min(1, Math.max(0, (innerHeight*.85 - r.top)/(r.height+innerHeight*.35)));
-  const k = Math.floor(p*ws.length); ws.forEach((w,i) => w.classList.toggle('lit', i < k)); }
-addEventListener('scroll', lit, {passive:true}); lit();
-
-/* les cartes du haut suivent un peu la souris */
-const fan = document.querySelector('.fan');
-addEventListener('mousemove', e => { if (scrollY > innerHeight) return;
-  const x = (e.clientX/innerWidth-.5)*20, y = (e.clientY/innerHeight-.5)*12;
-  fan.style.translate = `${x}px ${y}px`; });
+addEventListener('keydown', e => { if (e.key === 'Escape') closeProject(); });
+cases.addEventListener('click', e => { const t = e.target.closest('[data-i]'); if (t) openProject(+t.dataset.i); });
 </script>
 </body>
 </html>
